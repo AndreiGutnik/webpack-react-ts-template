@@ -11,7 +11,8 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
 	const fontsLoader = {
 		test: /\.(woff|woff2|eot|ttf|otf)$/i,
 		type: 'asset/resource',
-		generator: {			
+		generator: {	
+			publicPath: 'fonts/',		
 			outputPath: 'fonts/',
 		},
 	}
@@ -44,19 +45,30 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
   const assetLoader = {
     test: /\.(png|jpg|jpeg|gif)$/i,
     type: 'asset/resource',
-		generator: {			
+		generator: {	
+			publicPath: 'images/',		
 			outputPath: 'images/',
 		},
   };
 
   //SCSS + CSS
+	const cssLoaderWithModules = {
+		loader: "css-loader",
+		options: {
+			modules: {
+					localIdentName: isDev ? '[path][name]__[local]' : '[hash:base64:8]'
+			},
+		},
+	}
+
   const scssLoader = {
     test: /\.s[ac]ss$/i,
     use: [
       // Creates `style` nodes from JS strings
       isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
       // Translates CSS into CommonJS
-      'css-loader',
+      //'css-loader',
+			cssLoaderWithModules,
       // Compiles Sass to CSS
       'sass-loader',
     ],
