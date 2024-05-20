@@ -8,16 +8,16 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
   const isDev = options.mode === 'development';
 
   //fonts
-	const fontsLoader = {
-		test: /\.(woff|woff2|eot|ttf|otf)$/i,
-		type: 'asset/resource',
-		generator: {	
-			publicPath: 'fonts/',		
-			outputPath: 'fonts/',
-		},
-	}
-	
-	//SVG
+  const fontsLoader = {
+    test: /\.(woff|woff2|eot|ttf|otf)$/i,
+    type: 'asset/resource',
+    generator: {
+      publicPath: 'fonts/',
+      outputPath: 'fonts/',
+    },
+  };
+
+  //SVG
   const svgLoader = {
     test: /\.svg$/i,
     issuer: /\.[jt]sx?$/,
@@ -45,21 +45,21 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
   const assetLoader = {
     test: /\.(png|jpg|jpeg|gif)$/i,
     type: 'asset/resource',
-		generator: {	
-			publicPath: 'images/',		
-			outputPath: 'images/',
-		},
+    generator: {
+      publicPath: 'images/',
+      outputPath: 'images/',
+    },
   };
 
   //SCSS + CSS
-	const cssLoaderWithModules = {
-		loader: "css-loader",
-		options: {
-			modules: {
-					localIdentName: isDev ? '[path][name]__[local]' : '[hash:base64:8]'
-			},
-		},
-	}
+  const cssLoaderWithModules = {
+    loader: 'css-loader',
+    options: {
+      modules: {
+        localIdentName: isDev ? '[path][name]__[local]' : '[hash:base64:8]',
+      },
+    },
+  };
 
   const scssLoader = {
     test: /\.s[ac]ss$/i,
@@ -68,7 +68,7 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
       isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
       // Translates CSS into CommonJS
       //'css-loader',
-			cssLoaderWithModules,
+      cssLoaderWithModules,
       // Compiles Sass to CSS
       'sass-loader',
     ],
@@ -77,7 +77,7 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
   //CSS
   const cssLoader = {
     test: /\.css$/i,
-    use: ['style-loader', 'css-loader'],
+    use: [isDev ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader'],
   };
 
   //Typescript
@@ -99,10 +99,10 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
 
   return [
     assetLoader,
-    scssLoader,
-    // cssLoader,
+    //scssLoader,
+    cssLoader,
     tsLoader,
     svgLoader,
-		fontsLoader,
+    fontsLoader,
   ];
 }
