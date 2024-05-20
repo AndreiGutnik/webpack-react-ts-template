@@ -1,13 +1,28 @@
-import ReactDOM, { createRoot } from 'react-dom/client';
-import { App } from './components/App/App';
-//import './components/App.scss'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { HelmetProvider } from 'react-helmet-async';
+//import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
-const root = document.getElementById('root')
+//import { PersistGate } from 'redux-persist/integration/react';
+//import { persistor, store } from './redux/store';
+import { App } from '@/components/App';
 
-if (!root) {
-	throw new Error('Root not found!')
-}
+const isDev = process.env.NODE_ENV === 'development';
 
-const container = ReactDOM.createRoot(root)
-
-container.render(<App/>)
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+  <React.StrictMode>
+    {/* <Provider store={store}> */}
+    {/* <PersistGate
+      loading={null}
+      persistor={persistor}
+    > */}
+    <BrowserRouter basename={isDev ? '/' : '/repo_name/'}>
+      <HelmetProvider>
+        <App />
+      </HelmetProvider>
+    </BrowserRouter>
+    {/* </PersistGate> */}
+    {/* </Provider> */}
+  </React.StrictMode>
+);

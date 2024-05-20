@@ -2,6 +2,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ReactRefreshTypeScript from 'react-refresh-typescript';
 import { ModuleOptions, runtime } from 'webpack';
 
+import { buildBabelLoader } from './babel/buildBabelLoader';
 import { BuildOptions } from './types/types';
 
 export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
@@ -51,29 +52,6 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
     },
   };
 
-  //SCSS + CSS
-  const cssLoaderWithModules = {
-    loader: 'css-loader',
-    options: {
-      modules: {
-        localIdentName: isDev ? '[path][name]__[local]' : '[hash:base64:8]',
-      },
-    },
-  };
-
-  const scssLoader = {
-    test: /\.s[ac]ss$/i,
-    use: [
-      // Creates `style` nodes from JS strings
-      isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-      // Translates CSS into CommonJS
-      //'css-loader',
-      cssLoaderWithModules,
-      // Compiles Sass to CSS
-      'sass-loader',
-    ],
-  };
-
   //CSS
   const cssLoader = {
     test: /\.css$/i,
@@ -98,30 +76,10 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
   };
 
   //babel-loader
-  const babelLoader = {
-    test: /\.tsx?$/,
-    exclude: /node_modules/,
-    use: {
-      loader: 'babel-loader',
-      options: {
-        presets: [
-          '@babel/preset-env',
-          '@babel/preset-typescript',
-          [
-            '@babel/preset-react',
-            {
-              runtime: isDev ? 'automatic' : 'classic',
-            },
-          ],
-        ],
-        plugins: ['@babel/plugin-syntax-dynamic-import'],
-      },
-    },
-  };
+  const babelLoader = buildBabelLoader(options);
 
   return [
     assetLoader,
-    //scssLoader,
     cssLoader,
     //tsLoader,
     babelLoader,
