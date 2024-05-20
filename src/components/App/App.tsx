@@ -1,8 +1,7 @@
-import image from '@/assets/images/how-it-works.png';
 import css from './App.module.scss';
+import image from '@/assets/images/how-it-works.png';
 
 export const App = () => {
-	console.log(css);
   return (
     <div>
      				<p>App</p>
