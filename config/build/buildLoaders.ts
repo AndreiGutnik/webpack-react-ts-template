@@ -7,7 +7,16 @@ import { BuildOptions } from './types/types';
 export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
   const isDev = options.mode === 'development';
 
-  //SVG
+  //fonts
+	const fontsLoader = {
+		test: /\.(woff|woff2|eot|ttf|otf)$/i,
+		type: 'asset/resource',
+		generator: {			
+			outputPath: 'fonts/',
+		},
+	}
+	
+	//SVG
   const svgLoader = {
     test: /\.svg$/i,
     issuer: /\.[jt]sx?$/,
@@ -35,6 +44,9 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
   const assetLoader = {
     test: /\.(png|jpg|jpeg|gif)$/i,
     type: 'asset/resource',
+		generator: {			
+			outputPath: 'images/',
+		},
   };
 
   //SCSS + CSS
@@ -79,5 +91,6 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
     // cssLoader,
     tsLoader,
     svgLoader,
+		fontsLoader,
   ];
 }
