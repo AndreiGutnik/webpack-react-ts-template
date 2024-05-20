@@ -1,4 +1,4 @@
-import image from '@/assets/how-it-works.png';
+import image from '@/assets/images/how-it-works.png';
 
 export const App = () => {
   return (
