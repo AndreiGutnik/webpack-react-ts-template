@@ -1,5 +1,6 @@
 import css from './App.module.scss';
 import image from '@/assets/images/how-it-works.png';
+import imageh from '@/assets/images/how-it-works.png';
 
 export const App = () => {
   return (

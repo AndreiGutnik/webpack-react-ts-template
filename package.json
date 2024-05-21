@@ -13,6 +13,8 @@
   "author": "Andrii Hutnyk <hutnyk2019@gmail.com>",
   "license": "ISC",
   "devDependencies": {
+    "@babel/eslint-parser": "^7.24.5",
+    "@babel/eslint-plugin": "^7.24.5",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.13",
     "@svgr/webpack": "^8.1.0",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
@@ -23,6 +25,7 @@
     "@types/webpack-dev-server": "^4.7.2",
     "copy-webpack-plugin": "^12.0.2",
     "css-loader": "^6.8.1",
+    "eslint": "^9.3.0",
     "fork-ts-checker-webpack-plugin": "^9.0.2",
     "html-webpack-plugin": "^5.6.0",
     "mini-css-extract-plugin": "^2.9.0",

@@ -1,0 +1,56 @@
+{
+  "parser": "@babel/eslint-parser",
+  "env": {
+    // предоставляет предопределенные глобальные переменные
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended"], // рекомендуемый набор правил
+  "plugins": ["@babel"],
+  "parserOptions": {
+    // версия синтаксиса ECMAScript: 5 (по умолчанию), 6 (или 2015), ..., 12 (2021), 13 (2022)
+    "ecmaVersion": "latest",
+    // script (значение по умолчанию) или module (если используются модули ECMAScript)
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-unused-vars": "warn", // неиспользуемый импорт
+    "linebreak-style": ["error", "unix"], // символ(ы) конца строки
+    "quotes": ["error", "single"], // использовать одинарные кавычки
+    "semi": ["error", "never"], // точка с запятой в конце операторов
+    "indent": ["error", 4, { "SwitchCase": 1 }], // отступы в коде из 4 пробелов с учетом switch...case
+    "arrow-parens": ["error", "as-needed"], // скобки вокруг единственного параметра стрелочной функции
+    "object-curly-spacing": ["error", "always"], // пробелы между скобками в литералах объектов
+    "array-bracket-spacing": ["error", "never"], // пробелы между скобками в массивах
+    "quote-props": ["error", "as-needed"], // свойства объекта в кавычках или без кавычек
+    "no-trailing-spaces": "error", // не должно быть пробелов в конце строки
+    "no-tabs": "error", // символы табуляции в коде запрещена везде
+    "comma-dangle": [
+      "error",
+      {
+        // запятая после последнего элемента массива или объекта
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "never",
+        "exports": "never",
+        "functions": "never",
+        "json": "never"
+      }
+    ],
+    "brace-style": ["error", "1tbs"], // правила для фигурных скобкок для блоков кода
+    "keyword-spacing": "error", // пробел слева и справа для ключевых слов
+    "no-multi-spaces": "error", // не допускается несколько пробелов подряд
+    "eqeqeq": "error", // использовать === и !== вместо == и !=
+    "camelcase": "error", // имена переменных и функций в стиле camelCase
+    "max-len": ["error", 100], // максимальная длина строки
+    "no-multiple-empty-lines": "error" // не больше 2 пустых строк подряд
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  }
+}
