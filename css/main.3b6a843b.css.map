@@ -1,0 +1,1 @@
+{"version":3,"file":"css/main.3b6a843b.css","mappings":"AAAA,UACC,qB","sources":["webpack://webpack-react-ts-template/./src/components/App/App.module.scss"],"sourcesContent":[".button{\n\tbackground-color: red;\n}"],"names":[],"sourceRoot":""}
